@@ -11,10 +11,10 @@ import warnings
 from typing import List, Any
 
 from ..abs_agent import Agent, MessageSender
-from ..agent_framework import (CGAgent, SAPARAgentForWerewolf, SAPARAgentForAvalon, GraphThoughtAgent, GraphCGAgent,
-                               CodeActAgent, CodeActAgentforWerewolf, CodeActAgentforAvalon)
-
-
+from ..agent_framework import (CGAgent, SAPARAgentForWerewolf, SAPARAgentForAvalon, GraphThoughtAgent, GraphCGAgent)
+# from src.agents.agent_framework.codeact_agent import CodeActAgent
+# from src.agents.agent_framework.codeact_agent import CodeActAgentforWerewolf
+# from src.agents.agent_framework.codeact_agent import CodeActAgentforAvalon
 class ChatGLMMessageSender(MessageSender):
     def __init__(self, model, tokenizer, temperature, **kwargs):
         super().__init__(model, tokenizer, temperature, **kwargs)
@@ -123,7 +123,7 @@ class ChatGLM_GraphCGAgent(GraphCGAgent, ChatGLMMessageSender):
                      temperature: float = None) -> str:
         return ChatGLMMessageSender.send_message(self, messages, model, tokenizer, temperature)
 
-
+from src.agents.agent_framework.codeact_agent import CodeActAgent
 class ChatGLM_CodeActAgent(CodeActAgent, ChatGLMMessageSender):
     def __init__(self, name: str, role: str, rule_role_prompt: str,
                  private_information: str, current_team_number: int,
@@ -150,7 +150,7 @@ class ChatGLM_CodeActAgent(CodeActAgent, ChatGLMMessageSender):
                      temperature: float = None) -> str:
         return ChatGLMMessageSender.send_message(self, messages, model, tokenizer, temperature)
 
-
+from src.agents.agent_framework.codeact_agent import CodeActAgentforAvalon
 class ChatGLM_CodeActAgent_forAvalon(CodeActAgentforAvalon, ChatGLMMessageSender):
     def __init__(self, name: str, role: str, rule_role_prompt: str,
                  private_information: str, current_team_number: int,
@@ -177,7 +177,7 @@ class ChatGLM_CodeActAgent_forAvalon(CodeActAgentforAvalon, ChatGLMMessageSender
                      temperature: float = None) -> str:
         return ChatGLMMessageSender.send_message(self, messages, model, tokenizer, temperature)
 
-
+from src.agents.agent_framework.codeact_agent import CodeActAgentforWerewolf
 class ChatGLM_CodeActAgent_forWerewolf(CodeActAgentforWerewolf, ChatGLMMessageSender):
     def __init__(self, name: str, role: str, rule_role_prompt: str,
                  private_information: str, current_team_number: int,
